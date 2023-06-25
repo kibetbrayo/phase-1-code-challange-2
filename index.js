@@ -1,44 +1,52 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Fetch animal data from the server
-  fetch('http://localhost:3000/characters')
-    .then(response => response.json())
-    .then(data => {
-      const animalNamesList = document.getElementById('animal-names');
-      const animalDetailsContainer = document.getElementById('animal-details');
+  const animalNamesList = document.getElementById('animal-names');
+  const animalDetailsContainer = document.getElementById('animal-details');
+  const voteButton = document.getElementById('vote-button');
+  const voteInput = document.getElementById('vote-input');
 
-      // show the animal names list
-      data.forEach(animal => {
-        const listItem = document.createElement('li');
-        listItem.textContent = animal.name;
-        listItem.addEventListener('click', () => {
-          // Display animal details when clicked
-          displayAnimalDetails(animal);
-        });
-        animalNamesList.appendChild(listItem);
+  let animals = [];
+
+  function fetchAnimalData() {
+    return fetch('http://localhost:3000/characters')
+      .then(response => response.json())
+      .then(data => {
+        animals = data;
+        renderAnimalNames();
+        displayAnimalDetails(animals[0]);
+      })
+      .catch(error => {
+        console.log('Error fetching animal data:', error);
       });
-
-     
-    });
-
-  // Function to display animal details
-  function displayAnimalDetails(animal) {
-    const animalDetailsContainer = document.getElementById('animal-details');
-    animalDetailsContainer.innerHTML = ` 
-      <img src="${animal.image}" alt="${animal.name}">
-      <p>Votes: ${animal.votes}</p>`
-    ;
   }
 
-  // Vote button click event
-  const voteButton = document.getElementById('vote-button');
-  voteButton.addEventListener('click', () => {
-    const voteInput = document.getElementById('vote-input');
+  function renderAnimalNames() {
+    animalNamesList.innerHTML = animals
+      .map(animal => `<li>${animal.name}</li>`)
+      .join('');
+
+    animalNamesList.querySelectorAll('li').forEach((listItem, index) => {
+      listItem.addEventListener('click', () => {
+        displayAnimalDetails(animals[index]);
+      });
+    });
+  }
+
+  function displayAnimalDetails(animal) {
+    animalDetailsContainer.innerHTML = `
+      <img src="${animal.image}" alt="${animal.name}">
+      <p>Votes: ${animal.votes}</p>
+    `;
+  }
+
+  function updateVoteCount() {
     const votes = parseInt(voteInput.value, 10);
     if (!isNaN(votes)) {
-      const animalDetailsContainer = document.getElementById('animal-details');
       const votesParagraph = animalDetailsContainer.querySelector('p');
       votesParagraph.textContent = `Votes: ${votes}`;
     }
-  });
+  }
+
+  fetchAnimalData();
+
+  voteButton.addEventListener('click', updateVoteCount);
 });
