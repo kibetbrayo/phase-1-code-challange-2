@@ -1,16 +1,34 @@
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./styles.css">
-<title>Document</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <h1>FLATACULTIES - VOTE FOR THE CUTEST ANIMAL</h1>
+  </header>
 
-<main>
-    <ul class="animals">
+  <main>
+    <section AnimalNames="ANIMAL NAMES">
+      <h2>NAMES OF ANIMALS</h2>
+      <ul id="animal-names"></u>
+    </section>
 
-    </ul>
-</main>
-<script src="./index.js"></script>
+    <section AnimalDetails="animal-details">
+      <h2>LIST OF ANIMALS</h2>
+      <div id="animal-details"></div>
+    </section>
+
+    <section AnimalVotes="animals vote">
+      <h2>ANIMAL VOTES</h2>
+      <input type="number" id="vote-input" min="0" value="0">
+      <button id="vote-button">Vote</button>
+    </section>
+  </main>
+
+  <script src="./index.js"></script>
 </body>
 </html>
