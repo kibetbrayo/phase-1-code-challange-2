@@ -1,6 +1,6 @@
 # phase-1-code-challange-2
 
- - Vote for the Cutest Animal
+ Vote for the Cutest Animal
 This is a simple web application that allows users to vote for the cutest animal. Users can see a list of animal names, view the details of each animal, and vote for their favorite animal.
 ## Features
     • Fetches animal data from a server
@@ -28,7 +28,7 @@ The animal data is fetched from a server using the following endpoint: http://lo
 BRIAN KIBET
 
 ## Acknowledgements
-    • This project is for educational purposes and is inspired by various web development tutorials and examples.
+This project is for educational purposes and is inspired by various web development tutorials and examples.
 Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
